@@ -1,4 +1,18 @@
+import axios from 'axios';
+
 export const onClickSignUp = ()=>{
+    const createAccount = async (acc)=>{
+        let db = await axios.get("https://61b5fc90c95dd70017d40dbb.mockapi.io/accounts");
+        console.log(db);
+        if(db.data.filter((item)=>item.username===acc.username).length>0 || 
+        db.data.filter((item)=>item.email===acc.email).length>0){
+            alert("Your User Name or Email was used earlier");
+        }
+        else{
+            await axios.post("https://61b5fc90c95dd70017d40dbb.mockapi.io/accounts", result);
+        }
+        
+    }
     let result = {};
     result.name = document.querySelector("#name").value;
     result.email = document.querySelector("#email").value;
@@ -27,6 +41,9 @@ export const onClickSignUp = ()=>{
     }
     if (err.length>0){
         alert(`You entered incorrectly ${err.join(", ")}`)
+    }
+    else{
+        createAccount(result);
     }
     console.log(result);
 }
