@@ -2,10 +2,11 @@ import React from 'react';
 import { LogInInputs } from '../components/LogInInputs';
 import { Button } from '@mui/material';
 import { onClickLogIn } from '../scripts/onClickLogIn';
-import { Link } from 'react-router-dom';
-export const LogIn = ()=>{
+import { Link, Navigate } from 'react-router-dom';
+export const LogIn = ({navig})=>{
     return(
         <>
+            {navig && <Navigate to="/"/>}
             <h1>LogIn</h1>
             <p className='prescription'>Please Login To Your Account</p>
             <hr/>
@@ -25,7 +26,7 @@ export const LogIn = ()=>{
                             Register
                         </Button>
                         </Link>
-                    
+                        
                 </div>
                 
             </div>

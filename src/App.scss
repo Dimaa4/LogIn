@@ -22,15 +22,16 @@
             display: flex;
             justify-content: space-between;
         }
-        .buttons{
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            width: 450px;
-        }
+        
     }
     a{
         text-decoration: none;
+    }
+    .buttons{
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        width: 450px;
     }
     
 }
