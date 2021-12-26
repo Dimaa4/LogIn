@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { store } from '../redux/store';
 export const onClickSignUp = async ()=>{
     
     const createAccount = async (acc)=>{
@@ -7,7 +8,9 @@ export const onClickSignUp = async ()=>{
         
         if(db.data.filter((item)=>item.username===acc.username).length>0 || 
         db.data.filter((item)=>item.email===acc.email).length>0){
-            alert("Your User Name or Email was used earlier");
+            store.dispatch({type:"OPEN", value:{title:"ERROR", 
+            content:"Your User Name or Email was used earlier",
+            color: "red"}})
             
             return false;
         }
@@ -48,8 +51,11 @@ export const onClickSignUp = async ()=>{
         err.push("Password");
     }
     if (err.length>0){
-        alert(`You entered incorrectly ${err.join(", ")}`)
-        alert(123)
+        
+        store.dispatch({type:"OPEN", value:{title:"ERROR", 
+            content:`You entered incorrectly ${err.join(", ")}`,
+            color: "red"}})
+        
         return false;
     }
     else{

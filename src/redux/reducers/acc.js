@@ -1,10 +1,10 @@
-export function account (state, action){
+export default function account (state = {}, action){
     
     switch (action.type) {
         case "CHANGE":
-            return action.value  
+            return {...action.value}  
         case "CLEAR":
-            return {}  
+            return {}
         default:
             return state;
     }

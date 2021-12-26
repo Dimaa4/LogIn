@@ -7,15 +7,15 @@ import { deleteAccount } from "../scripts/deleteAccount";
 import { DataInputs } from "../components/DataInputs";
 import { changeData } from "../scripts/changeData";
 export const PersonalArea= ({navig})=>{
-    const [name, setName] = React.useState(store.getState() ? store.getState().name : "")
+    
     return(
     <>
     {navig ? null : <Navigate to="/login"/>}
-        <h1>Hi, {name} !</h1>
+        <h1>Hi, {store.getState().acc ? store.getState().acc.name : ""} !</h1>
         <div className="formInputs">
             <DataInputs fillData={true}/>
             
-            <Button onClick={() =>{changeData() ;setName(store.getState().name)}} variant="contained" size="large" sx={{m:2} } >Change Data</Button>
+            <Button onClick={() =>changeData() } variant="contained" size="large" sx={{m:2} } >Change Data</Button>
             
             <div className='buttons'>
                 <Button variant="outlined" onClick={onLogOff} size="large" sx={{width:200}}>

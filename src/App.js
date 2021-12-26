@@ -10,14 +10,14 @@ import { SignUp } from './pages/SignUp';
 import { LogIn } from './pages/LogIn';
 import { PersonalArea } from './pages/PersonalArea';
 import { checkAcc } from './scripts/checkAcc';
+import { ModalWindow } from './components/ModalWindow/ModalWindow';
 export const App = ()=>{
-//checkAcc();
 React.useEffect(() => {
     checkAcc(isLogIn);
     
   }, []);
 const isLogIn = ()=>{
-    const acc = store.getState();
+    const acc = store.getState().acc;
     if(acc && Object.keys(acc).length !== 0 ){
 
         return(true);
@@ -29,15 +29,18 @@ const isLogIn = ()=>{
       
     }
 }  
-
+const [isModalWindowOpen, setOpenWindow]= React.useState(store.getState().mWindow.isOpen);
 const [navig, setNavig] = React.useState(isLogIn());
   store.subscribe(()=>{
       setNavig(isLogIn());
+      setOpenWindow(store.getState().mWindow.isOpen);
   });
     
 
 
     return(
+      <>
+         {isModalWindowOpen &&  <ModalWindow/>  }
         <div className='container'>
             
             <Router>
@@ -49,6 +52,6 @@ const [navig, setNavig] = React.useState(isLogIn());
             </Routes> 
             </Router>
         </div>
-        
+      </>
     );
 }

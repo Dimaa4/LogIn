@@ -1,7 +1,7 @@
 import { store } from "../redux/store"
 export const fillDataInputs = ()=>{
     
-    const acc = store.getState() ? store.getState() : {};
+    const acc = store.getState().acc ? store.getState().acc : {};
     let result = {};
     result.name = acc.name;
     result.email = acc.email;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { store } from '../redux/store';
 import { DataInputs } from '../components/DataInputs';
 import { Button } from '@mui/material';
 import { onClickSignUp } from '../scripts/onClickSignUp';
@@ -10,7 +11,9 @@ export const SignUp = ({navig})=>{
         .then(res=>{
             if ( res ){
                 navigate('/login')
-                alert("You have successfully registered, please login")
+                store.dispatch({type:"OPEN", value:{title:"Success", 
+                    content:"You have successfully SignUp",
+                    color: "#22862a"}})
             }
             else{
                 console.log(false) 

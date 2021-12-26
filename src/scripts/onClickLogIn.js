@@ -16,14 +16,21 @@ export const onClickLogIn= ()=>{
                 else{
                     window.sessionStorage.setItem('acc', JSON.stringify( dbAcc[0]));
                 }
-                
+                store.dispatch({type:"OPEN", value:{title:"Success", 
+                    content:"You have successfully LogIn",
+                    color: "#22862a"}})
             }
             else {
-                alert("password is incorrect")
+                
+                store.dispatch({type:"OPEN", value:{title:"ERROR", 
+                content:`password is incorrect`,
+                color: "red"}})
             }
         }
         else {
-            alert("User name is incorrect")
+            store.dispatch({type:"OPEN", value:{title:"ERROR", 
+            content:`User name is incorrect`,
+            color: "red"}})
             return null;
         }
     }
@@ -39,7 +46,11 @@ export const onClickLogIn= ()=>{
         err.push("Password");
     }
     if (err.length>0){
-        alert(`You entered incorrectly ${err.join(", ")}`)
+
+        store.dispatch({type:"OPEN", value:{title:"ERROR", 
+        content:`You entered incorrectly ${err.join(", ")}`,
+        color: "red"}})
+
     }
     else{
         checkAccount(result)
