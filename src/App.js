@@ -9,15 +9,22 @@ import "./App.scss";
 import { SignUp } from './pages/SignUp';
 import { LogIn } from './pages/LogIn';
 import { PersonalArea } from './pages/PersonalArea';
+import { checkAcc } from './scripts/checkAcc';
 export const App = ()=>{
+//checkAcc();
+React.useEffect(() => {
+    checkAcc(isLogIn);
+    
+  }, []);
 const isLogIn = ()=>{
-    if(store.getState().username && store.getState().username.length >0){
-        
+    const acc = store.getState();
+    if(acc && Object.keys(acc).length !== 0 ){
+
         return(true);
         
     }
     else {
-        
+
       return(false);
       
     }
@@ -25,7 +32,6 @@ const isLogIn = ()=>{
 
 const [navig, setNavig] = React.useState(isLogIn());
   store.subscribe(()=>{
-      console.log(store.getState());
       setNavig(isLogIn());
   });
     

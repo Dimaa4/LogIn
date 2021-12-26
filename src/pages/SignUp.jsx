@@ -1,5 +1,5 @@
 import React from 'react';
-import { SignUpInputs } from '../components/SignUpInputs';
+import { DataInputs } from '../components/DataInputs';
 import { Button } from '@mui/material';
 import { onClickSignUp } from '../scripts/onClickSignUp';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
@@ -10,11 +10,14 @@ export const SignUp = ({navig})=>{
         .then(res=>{
             if ( res ){
                 navigate('/login')
+                alert("You have successfully registered, please login")
             }
             else{
                 console.log(false) 
+                
             }
         }) 
+        
     }
     return(
         <>
@@ -23,7 +26,7 @@ export const SignUp = ({navig})=>{
             <p className='prescription'>Please tell us a little about yourself</p>
             <hr/>
             <div className='formInputs'>
-                <SignUpInputs/>
+                <DataInputs usernameInput={true} />
                 <br /> 
                 <div className='buttons'>
                     <Button sx={{width:200}} onClick={onClickReg} variant="contained" size="large" margin="dense">

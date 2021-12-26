@@ -2,10 +2,13 @@ import axios from 'axios';
 export const onClickSignUp = async ()=>{
     
     const createAccount = async (acc)=>{
+        
         let db = await axios.get("https://61b5fc90c95dd70017d40dbb.mockapi.io/accounts");
+        
         if(db.data.filter((item)=>item.username===acc.username).length>0 || 
         db.data.filter((item)=>item.email===acc.email).length>0){
             alert("Your User Name or Email was used earlier");
+            
             return false;
         }
         else{
@@ -20,8 +23,9 @@ export const onClickSignUp = async ()=>{
     let result = {};
     result.name = document.querySelector("#name").value;
     result.email = document.querySelector("#email").value;
-    result.country = document.querySelector("#country-select").value;
-    result.number = document.querySelector("#mui-1").value;
+    result.country = document.querySelector("#country").value;
+    result.number = document.querySelector("#number").value;
+    
     result.username = document.querySelector("#userName").value;
     result.password = document.querySelector("#password").value;
     let err = [];
@@ -45,9 +49,11 @@ export const onClickSignUp = async ()=>{
     }
     if (err.length>0){
         alert(`You entered incorrectly ${err.join(", ")}`)
+        alert(123)
         return false;
     }
     else{
+        
         return createAccount(result)
         
         
