@@ -16,6 +16,7 @@ React.useEffect(() => {
     checkAcc(isLogIn);
     
   }, []);
+  
 const isLogIn = ()=>{
     const acc = store.getState().acc;
     if(acc && Object.keys(acc).length !== 0 ){
@@ -35,7 +36,9 @@ const [navig, setNavig] = React.useState(isLogIn());
       setNavig(isLogIn());
       setOpenWindow(store.getState().mWindow.isOpen);
   });
-    
+  if(isModalWindowOpen){
+    document.body.style.overflow = 'hidden';
+  }
 
 
     return(
